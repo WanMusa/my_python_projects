@@ -36,5 +36,6 @@ def add_dates_list (dates, prayer_times):
 extracted = add_dates_list(get_dates(data), get_prayer_times(data))
 
 df = pd.DataFrame(extracted)
-cleaned_df = df.replace(to_replace='\(NZST\)', value= '', regex=True, inplace=True)
+#cleaned_df = df.replace(to_replace='\(NZST\)', value= '', regex=True, inplace=True)
+df = df.applymap(lambda x: x.replace('(NZST)', '').replace(' ', '') if isinstance(x, str) else x)
 print (df)
